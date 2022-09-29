@@ -16,7 +16,7 @@ def do_pack():
     local("mkdir -p versions")
     res = local(f"tar czfv ./versions/{file_name} ./web_static")
 
-    if res = 0:
+    if res == 0:
         return f"~/alx/AirBnB_clone_v2/versions/{file_name}"
 
     return None

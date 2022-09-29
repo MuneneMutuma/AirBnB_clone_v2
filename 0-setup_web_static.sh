@@ -36,6 +36,12 @@ printf %s "srever {
 		alias /data/web_static/current;
 		index index.html index.htm;
 	}
+
+	error_page 404 /404.html;
+	location /404 {
+		root /var/www/html;
+		internal;
+	}
 }" > /etc/nginx/sites-available/default
 
 service nginx restart

@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 """module for compressing web_static folder"""
+
+
 from fabric.api import local, lcd
 import datetime
 

@@ -1,0 +1,142 @@
+.places h1 {
+	position: relative;
+	font-size: 30px;
+}
+
+.content article {
+	width: 390px;
+	padding: 20px;
+	margin: 20px;
+	border: #FF5A5F 1px solid;
+	border-radius: 4px;
+}
+
+.content article h2 {
+	font-size: 30px;
+	margin: auto;
+	display: flex;
+	justify-content: center;
+}
+
+.content {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: center;
+}
+
+.price_by_night {
+	color: #FF5A5F;
+	border: solid #FF5A5F 4px;
+	border-radius:50%;
+	width: 60px;
+	min-width: 60px;
+	height: 60px;
+	font-size: 30px;
+	margin: auto;
+	margin-right: 0;
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 10px;
+}
+
+.information {
+	height: 80px;
+	border-top: solid #DDDDDD 1px;
+	border-bottom: solid #DDDDDD 1px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin: auto;
+	padding: 0 45px;
+}
+
+
+.max_guest {
+	width: 100px;
+	height: inherit;
+	background-image: url('../images/icon_group.png');
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+.number_rooms {
+	width: 100px;
+	height: inherit;
+	background-image: url('../images/icon_bed.png');
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+.number_bathrooms {
+	width: 100px;
+	height: inherit;
+	background-repeat: no-repeat;
+	background-image: url('../images/icon_bath.png');
+	background-position: center center;
+}
+
+.information div {
+	display: flex;
+	align-items: flex-end;
+	justify-content: center;
+}
+
+.bottom-center {
+	text-align: center;
+	margin: 2px auto;
+	justify-content: center;
+}
+
+.user {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.places .amenities {
+	margin-top: 40px;
+}
+
+.places .amenities h2 {
+	font-size: 16px;
+	border-bottom: #DDDDDD solid 1px;
+}
+
+.places .amenities ul {
+	list-style: none;
+}
+
+.icons {
+	display: flex;
+	flex-direction: row;
+	align-items: center
+}
+
+.icons i {
+	padding: 0 10px;
+}
+
+.reviews {
+	margin-top: 40px;
+}
+
+.content .reviews h2 {
+	font-size: 16px;
+	border-bottom: #DDDDDD 1px solid;
+	justify-content: left;
+}
+
+ul {
+	list-style: none;
+}
+
+.reviews p {
+	font-size: 12px;
+}
+
+.content .reviews ul{
+	padding: 0;
+}

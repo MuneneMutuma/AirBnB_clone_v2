@@ -14,14 +14,9 @@ def do_pack():
             now.year, now.month, now.day, now.hour, now.minute, now.second)
 
     local("mkdir -p versions")
-    try:
-        local(f"tar czfv ./versions/{file_name} ./web_static")
+    res = local(f"tar czfv ./versions/{file_name} ./web_static")
+
+    if res = 0:
         return f"~/alx/AirBnB_clone_v2/versions/{file_name}"
-    except Exception as e:
-        return None
 
-
-def reset():
-    """resets, and removes the clone"""
-    with lcd("/tmp"):
-        local("rm -rf AirBnB_clone")
+    return None

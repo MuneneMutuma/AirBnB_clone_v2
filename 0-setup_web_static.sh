@@ -21,10 +21,9 @@ echo "
 
 sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
 
-sudo chown ubuntu -R /data/
-sudo chgrp ubuntu -R /data/
+sudo chown ubuntu:ubuntu -R /data/
 
-printf %s "srever {
+printf %s "server {
 	listen 80 default_server;
 	listen [::]:80 default_server;
 
@@ -37,13 +36,15 @@ printf %s "srever {
 		index index.html index.htm;
 	}
 
+	location /redirect_me {
+		return 301 http://cuberule.com/;
+	}
+
 	error_page 404 /404.html;
 	location /404 {
 		root /var/www/html;
 		internal;
 	}
-}" > /etc/nginx/sites-available/default
-
-service nginx restart
+}" >> /etc/nginx/sites-available/default
 
 service nginx restart

@@ -12,14 +12,13 @@ def do_pack():
     now = datetime.datetime.now()
     file_name = "web_static_{:02d}{:02d}{:02d}{:02d}{:02d}{:02d}".format(
             now.year, now.month, now.day, now.hour, now.minute, now.second)
-    local("mkdir -p versions")
-    with lcd("/tmp"):
-        local("git clone https://github.com/MuneneMutuma/AirBnB_clone.git")
-        local(f"tar czfv ~/alx/AirBnB_clone_v2/versions/{file_name}\
-                ./AirBnB_clone/web_static")
-        return f"~/alx/AirBnB_clone_v2/versions/{file_name}"
 
-    return None
+    local("mkdir -p versions")
+    try:
+        local(f"tar czfv ./versions/{file_name} ./web_static")
+        return f"~/alx/AirBnB_clone_v2/versions/{file_name}"
+    except Exception as e:
+        return None
 
 
 def reset():

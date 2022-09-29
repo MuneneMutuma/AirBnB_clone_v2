@@ -21,11 +21,23 @@ echo "
 
 sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
 
-sudo chown "$USER":"$USER" -R /data/
+sudo chown ubuntu -R /data/
+sudo chgrp ubuntu -R /data/
 
-sed -i '53i\	location /hbnb_static {' /etc/nginx/sites-available/default
-sed -i '54i\		alias /data/web_static/current/;' /etc/nginx/sites-available/default
-sed -i '55i\		index index.html index.htm;' /etc/nginx/sites-available/default
-sed -i '56i\	}' /etc/nginx/sites-available/default
+printf %s "srever {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+
+	add_header X-Served-By $HOSTNAME;
+	root /var/www/html;
+	index index.html index.htm;
+
+	location /hbnb_static {
+		alias /data/web_static/current;
+		index index.html index.htm;
+	}
+}" > /etc/nginx/sites-available/default
+
+service nginx restart
 
 service nginx restart

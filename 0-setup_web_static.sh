@@ -24,6 +24,7 @@ sudo chown "$USER":"$USER" -R /data/
 
 sed -i '53i\	location /hbnb_static {' /etc/nginx/sites-available/default
 sed -i '54i\		alias /data/web_static/current/;' /etc/nginx/sites-available/default
-sed -i '55i\	}' /etc/nginx/sites-available/default
+sed -i '55i\		index index.html index.htm;' /etc/nginx/sites-available/default
+sed -i '56i\	}' /etc/nginx/sites-available/default
 
 service nginx restart

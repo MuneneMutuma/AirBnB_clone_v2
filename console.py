@@ -138,7 +138,11 @@ class HBNBCommand(cmd.Cmd):
                         params[values[0]] = int(values[1])
                     except ValueError:
                         pass
-            new_instance.__dict__.update(params)
+
+            new_dict = new_instance.to_dict()
+            new_dict.update(params)
+            print(new_dict)
+            new_instance = HBNBCommand.classes[args[0]](**new_dict)
 
         storage.save()
         print(new_instance.id)

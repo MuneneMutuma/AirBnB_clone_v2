@@ -129,8 +129,9 @@ class HBNBCommand(cmd.Cmd):
             params = dict()
             for arg in args[1:]:
                 values = arg.split("=")
+                print("values {}".format(values))
                 if values[1][-1] == '"' and values[1][0] == '"':
-                    params[values[0]] = values[1].strip('"')
+                    params[values[0]] = values[1].strip('"').replace("_", " ")
                 elif '.' in values[1]:
                     params[values[0]] = float(values[1])
                 else:

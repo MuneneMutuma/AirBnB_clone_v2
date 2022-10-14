@@ -5,4 +5,11 @@ from models.base_model import BaseModel
 
 class State(BaseModel):
     """ State class """
-    name = ""
+    __tablename__ = "states"
+
+    name = Column(String(128), nullable=False)
+    cities = relationship('cities', cascade="all, delete", back_populates = "state")
+
+    @property
+    def cities(self):
+        return select(self.cities).join_from(self, cities)

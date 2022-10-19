@@ -18,8 +18,8 @@ classes = {
         # "amenities": Amenity,
         "cities": City,
         "states": State,
-        # "places": Place,
-        # "reviews": Review,
+        "places": Place,
+        "reviews": Review,
         "users": User
         }
 

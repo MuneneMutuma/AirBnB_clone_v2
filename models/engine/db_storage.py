@@ -56,16 +56,9 @@ class DBStorage:
 
     def new(self, obj):
         self.__session.add(obj)
-        print("create new object from db")
 
     def save(self):
         self.__session.commit()
-        print("what is in the db? ...")
-        for a, b in classes.items():
-            x = self.__session.query(b).all()
-            for obj in x:
-                print(obj)
-        print("save new object to db")
 
     def delete(self, obj=None):
         if obj:

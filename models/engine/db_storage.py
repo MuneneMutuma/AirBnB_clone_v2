@@ -10,18 +10,19 @@ from models.place import Place
 from models.review import Review
 from models.user import User
 
-from sqlalchemy import create_engine, select
-from sqlalchemy.orm import Session
+from sqlalchemy import create_engine, select, text, MetaData
+from sqlalchemy.orm import Session, scoped_session
 import os
 
 classes = {
-        "Amenity": Amenity,
-        "City": City,
-        "State": State,
-        "Place": Place,
-        "Review": Review,
-        "User": User
+        "amenities": Amenity,
+        "cities": City,
+        "states": State,
+        "places": Place,
+        "reviews": Review,
+        "users": User
         }
+
 
 class DBStorage:
     __engine = None
@@ -46,9 +47,25 @@ class DBStorage:
 
         for x in classes:
             if (cls is classes[x]) or (cls is x) or (cls is None):
-                objs = self.__session.query(classes[x]).all()
+                objs = self.__session.query(classes[x])
                 for obj in objs:
                     key = "{}.{}".format(obj.__class__, obj.id)
                     result[key] = obj
 
         return (result)
+
+    def new(self, obj):
+        self.__session.add(obj)
+
+    def save(self):
+        self.__session.commit()
+
+    def delete(self, obj=None):
+        if obj:
+            self.__session.delete(obj)
+
+    def reload(self):
+        Base.metadata.create_all(self.__engine)
+        factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
+        Session = scoped_session(factory)
+        self.__session = Session()

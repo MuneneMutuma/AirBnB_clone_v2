@@ -11,16 +11,16 @@ from models.review import Review
 from models.user import User
 
 from sqlalchemy import create_engine, select, text, MetaData
-from sqlalchemy.orm import Session, scoped_session
+from sqlalchemy.orm import Session, scoped_session, sessionmaker
 import os
 
 classes = {
-        "amenities": Amenity,
+        # "amenities": Amenity,
         "cities": City,
         "states": State,
-        "places": Place,
-        "reviews": Review,
-        "users": User
+        # "places": Place,
+        # "reviews": Review,
+        # "users": User
         }
 
 
@@ -47,18 +47,25 @@ class DBStorage:
 
         for x in classes:
             if (cls is classes[x]) or (cls is x) or (cls is None):
-                objs = self.__session.query(classes[x])
+                objs = self.__session.query(classes[x]).all()
                 for obj in objs:
-                    key = "{}.{}".format(obj.__class__, obj.id)
+                    key = "{}.{}".format(type(obj).__name__, obj.id)
                     result[key] = obj
 
         return (result)
 
     def new(self, obj):
         self.__session.add(obj)
+        print("create new object from db")
 
     def save(self):
         self.__session.commit()
+        print("what is in the db? ...")
+        for a, b in classes.items():
+            x = self.__session.query(b).all()
+            for obj in x:
+                print(obj)
+        print("save new object to db")
 
     def delete(self, obj=None):
         if obj:
